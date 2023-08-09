@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DemoPage extends StatelessWidget {
-  DemoPage({required this.email, required this.password});
-
-  String email;
-  String password;
+  DemoPage();
 
   @override
   Widget build(BuildContext context) {
@@ -12,11 +9,32 @@ class DemoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home Page'),
       ),
-      body: Column(
-        children: [
-          Text('Email : $email'),
-          Text('Password : $password'),
-        ],
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Catch me if you can',
+              style: TextStyle(fontSize: 40),
+            ),
+            SizedBox(
+              height: 100,
+            ),
+            AnimatedAlign(
+                duration: Duration(microseconds: 200),
+                alignment: Alignment.bottomLeft,
+                child: InkWell(
+                  onHover: (hovered) {
+                    if (hovered) {}
+                  },
+                  child: Text(
+                    'Hover',
+                    style: TextStyle(fontSize: 30),
+                  ),
+                ))
+          ],
+        ),
       ),
     );
   }

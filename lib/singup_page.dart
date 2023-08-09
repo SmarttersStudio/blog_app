@@ -8,6 +8,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   bool isPasswordVisible = false;
+  int passLength = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,11 @@ class _SignupPageState extends State<SignupPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
+                onChanged: (text) {
+                  setState(() {
+                    passLength = text.length;
+                  });
+                },
                 obscureText: !isPasswordVisible,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -53,6 +59,19 @@ class _SignupPageState extends State<SignupPage> {
                         icon: Icon(isPasswordVisible
                             ? Icons.visibility_off
                             : Icons.visibility))),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 10,
+                color: (passLength == 0)
+                    ? Colors.transparent
+                    : (passLength < 6)
+                        ? Colors.red
+                        : (passLength < 8)
+                            ? Colors.orange
+                            : Colors.green,
               ),
             ),
             Padding(
