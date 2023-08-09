@@ -20,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> checkLogin() async {
     await Future.delayed(Duration(seconds: 1));
     var pref = await SharedPreferences.getInstance();
-    bool isLoggedin = pref.getBool('login') ?? false;
+    bool isLoggedin = pref.getString('login') != null;
 
     if (isLoggedin) {
       Navigator.of(context)
