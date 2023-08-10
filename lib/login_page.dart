@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:blog_app/demo_page.dart';
 import 'package:blog_app/home_page.dart';
 import 'package:blog_app/singup_page.dart';
 import 'package:dio/dio.dart';

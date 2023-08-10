@@ -1,15 +1,22 @@
+import 'package:blog_app/home/home_widget.dart';
+import 'package:blog_app/home/profile_widget.dart';
 import 'package:blog_app/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text('My Feed'),
         centerTitle: true,
-        backgroundColor: Colors.black,
         elevation: 20,
         actions: [
           IconButton(
@@ -22,6 +29,17 @@ class HomePage extends StatelessWidget {
               icon: Icon(Icons.power_settings_new))
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          currentIndex: selectedIndex,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          ]),
       drawer: Drawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -31,19 +49,8 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: Colors.yellow,
       ),
-      body: Container(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text('Hii'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [Text('Hello'), Text('World')],
-          ),
-          TextField(),
-          ElevatedButton(onPressed: () {}, child: Text('click')),
-        ],
-      )),
+      body:
+          Container(child: selectedIndex == 0 ? HomeWidget() : ProfileWidget()),
     );
   }
 }
