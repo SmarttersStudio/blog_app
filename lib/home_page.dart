@@ -1,3 +1,4 @@
+import 'package:blog_app/add_post_page.dart';
 import 'package:blog_app/home/home_widget.dart';
 import 'package:blog_app/home/profile_widget.dart';
 import 'package:blog_app/login_page.dart';
@@ -42,7 +43,10 @@ class _HomePageState extends State<HomePage> {
           ]),
       drawer: Drawer(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddPostPage()));
+        },
         child: Icon(
           Icons.add,
           color: Colors.black,
