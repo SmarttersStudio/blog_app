@@ -21,16 +21,19 @@ class HomeWidget extends StatelessWidget {
           if (snapshot.hasData) {
             var jsonResponse = jsonDecode(snapshot.data!.data);
 
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return BlogCard(
-                  name: jsonResponse[index]['name'],
-                  title: jsonResponse[index]['title'],
-                  description: jsonResponse[index]['description'],
-                  timeStamp: jsonResponse[index]['timestamp'],
-                );
-              },
-              itemCount: jsonResponse.length,
+            return RefreshIndicator(
+              onRefresh: () async {},
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return BlogCard(
+                    name: jsonResponse[index]['name'],
+                    title: jsonResponse[index]['title'],
+                    description: jsonResponse[index]['description'],
+                    timeStamp: jsonResponse[index]['timestamp'],
+                  );
+                },
+                itemCount: jsonResponse.length,
+              ),
             );
           } else {
             return Center(
